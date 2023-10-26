@@ -18,9 +18,15 @@ function flip() {
     }
 }
 function forMatch() {
-    const isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
-    isMatch ? disableCard() : unflipCard();
-    updateScore(isMatch);
+  const isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+  isMatch ? disableCard() : unflipCard();
+  updateScore(isMatch);
+  if (match === cards.length / 2) {
+    document.getElementById('match').innerHTML = match;
+    document.getElementById('attempt').innerHTML = attempts;
+    document.getElementById('win-message').style.display = 'block';
+    document.getElementById('reset-btn').classList.add('animate');
+  }
 }
 function disableCard() {
     firstCard.removeEventListener('click', flip);
@@ -50,10 +56,23 @@ function updateScore(isMatch) {
         document.getElementById('match').innerHTML = ++match;
     }
 }
-(function shuffleCards() {
-    cards.forEach((card) => {
-        const randomOrder = Math.floor(Math.random() * 12);
-        card.style.order = randomOrder;
-    });
-})();
+function shuffleCards() {
+  cards.forEach((card) => {
+      const randomOrder = Math.floor(Math.random() * 12);
+      card.style.order = randomOrder;
+  });
+}
+shuffleCards();
+const resetButton = document.getElementById('reset-btn');
+resetButton.addEventListener('click', () => {
+    attempts = 0;
+    match = 0;
+    document.getElementById('attempt').innerHTML = attempts;
+    document.getElementById('match').innerHTML = match;
+    cards.forEach(card => card.classList.remove('flip'));
+    setTimeout(() => {
+        cards.forEach(card => card.addEventListener('click', flip));
+        shuffleCards();
+    }, 500);
+});
 cards.forEach((card) => card.addEventListener('click', flip));
