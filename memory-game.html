@@ -1,6 +1,7 @@
 <html lang="en"><head>
   <meta charset="UTF-8">
   <title>Memory Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="memory-game.css">
 </head>
 <body>
@@ -9,7 +10,9 @@
     <h2 id="attempt"></h2><br>
     <h1>Match:</h1>
     <h2 id="match"></h2>
-  </section>
+    <button id="reset-btn">Reset</button>
+    <h3 id="win-message" class="win-message">Congratulations! You won!</h3>
+  </section>  
   <section class="memory-game">
     <div class="card" data-framework="aurelia">
       <img class="front" src="images/aurelia.svg" alt="Aurelia">
@@ -65,8 +68,5 @@
       <img class="back" src="images/js-badge.svg" alt="JS Badge">
     </div>
   </section>
-
   <script src="memory-game.js"></script>
-
-
 </body></html>
