@@ -7,26 +7,29 @@
 body {
   height: 100vh;
   display: flex;
-  background: black;
+  background:#060ab2;
+  margin: 0;
+  overflow: hidden;
 
 }
 
 .score {
-  color: white;
-  width: 200px;
-  text-align: center;
-  position: fixed;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
+    width: 200px;
+    border: 1px solid rgba(255, 255, 255, 0.527);
+    text-align: center;
+    color: white;
 }
-
+h1, h2 {
+  color: white;
+  margin: 20px 5px 20px 20px;
+}
 .memory-game {
-  width: 500px;
-  height: 500px;
+  width: 640px;
+  height: 640px;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
+  perspective: 1000px
 }
 
 .card {
@@ -56,10 +59,73 @@ body {
   padding: 20px;
   position: absolute;
   border-radius: 5px;
-  background: white;
+  background: #1c7ccc;
   backface-visibility: hidden;
 }
 
 .front {
   transform: rotateY(180deg);
+}
+.win-message {
+  display: none;
+  color: white;
+  font-size: 24px;
+  margin-top: 20px;
+}
+#reset-btn {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+#reset-btn:hover {
+  background-color: #45a049;
+}
+@media (max-width: 575px) {
+  body {
+    overflow: auto;
+    height: 100rem;
+  }
+
+  .score {
+    width: 100%;
+    position: static;
+    transform: none;
+    text-align: center;
+    background-color: #060ab2;
+  }
+
+  .memory-game {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+  }
+
+  .card {
+    width: calc(50% - 10px);
+    height: calc(50% - 10px);
+  }
+
+  .front,
+  .back {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  #reset-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .win-message {
+    font-size: 18px;
+  }
 }
