@@ -69,8 +69,9 @@ h1, h2 {
 .win-message {
   display: none;
   color: white;
-  font-size: 24px;
-  margin-top: 20px;
+  font-size: 25px;
+  font-family: arial;
+  margin-top: 30px;
 }
 #reset-btn {
   background-color: green;
@@ -129,3 +130,11 @@ h1, h2 {
     font-size: 18px;
   }
 }
+#fireworksCanvas {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
