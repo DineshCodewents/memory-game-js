@@ -4,6 +4,7 @@ let board = false;
 let firstCard, secondCard;
 let attempts = 0;
 let match = 0;
+let fireworksActive = false;
 
 function flip() {
     if (this === firstCard) return;
@@ -18,16 +19,19 @@ function flip() {
     }
 }
 function forMatch() {
-  const isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
-  isMatch ? disableCard() : unflipCard();
-  updateScore(isMatch);
-  if (match === cards.length / 2) {
-    document.getElementById('match').innerHTML = match;
-    document.getElementById('attempt').innerHTML = attempts;
-    document.getElementById('win-message').style.display = 'block';
-    document.getElementById('reset-btn').classList.add('animate');
-  }
+    const isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+    isMatch ? disableCard() : unflipCard();
+    updateScore(isMatch);
+    if (match === cards.length / 2 && fireworksActive === false) {
+        document.getElementById('match').innerHTML = match;
+        document.getElementById('attempt').innerHTML = attempts;
+        document.getElementById('win-message').style.display = 'block';
+        fireworksActive = true;
+        launchFireworks();
+        document.getElementById('reset-btn').classList.add('animate');
+    }
 }
+
 function disableCard() {
     firstCard.removeEventListener('click', flip);
     secondCard.removeEventListener('click', flip);
@@ -74,5 +78,9 @@ resetButton.addEventListener('click', () => {
         cards.forEach(card => card.addEventListener('click', flip));
         shuffleCards();
     }, 500);
+
+    stopFireworks();
+    document.getElementById('win-message');
+    window.location.reload();
 });
 cards.forEach((card) => card.addEventListener('click', flip));
